@@ -1,0 +1,25 @@
+"%dev":
+  quarkus:
+    http:
+      port: 8030
+    datasource:
+      db-kind: oracle
+      jdbc:
+        max-size: 10
+        min-size: 1
+        url: jdbc:oracle:thin:@//localhost:1521/FREEPDB1
+      username: app
+      password: app
+
+"%lambda":
+  quarkus:
+    http:
+      port: 8070
+
+#    datasource:
+#       devservices:
+#         enabled: false //para que en prod no levante docker
+#      jdbc:
+#        url: ${ORACLE_JDBC_URL}
+#      username: ${ORACLE_USER}
+#      password: ${ORACLE_PASS}

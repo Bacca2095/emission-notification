@@ -1,0 +1,43 @@
+services:
+  oracle:
+    container_name: "oracle-db"
+    image: gvenzl/oracle-free:latest
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: sys_user
+      APP_USER: db_user
+      APP_USER_PASSWORD: db_password
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+      start_interval: 5s
+
+  localstack:
+    container_name: "localstack"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "./volumes/localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  mailpit:
+    image: axllent/mailpit
+    container_name: "mailpit"
+    restart: unless-stopped
+    volumes:
+      - "./volumes/mailpit:/data"
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    environment:
+      MP_MAX_MESSAGES: 5000
+      MP_DATABASE: /data/mailpit.db
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1

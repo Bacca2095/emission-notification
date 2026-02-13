@@ -84,7 +84,7 @@ flowchart LR
       direction TB
       IGW[Internet Gateway]
       NAT[NAT Gateway]
-      ALB[Application Load Balancer<br/>opcional si expones REST]
+      ALB[Application Load Balancer<br/>opcional si se expones REST]
     end
 
     subgraph PRIV_APP[Private Subnets - App]
@@ -95,7 +95,7 @@ flowchart LR
 
     subgraph PRIV_DB[Private Subnets - DB]
       direction TB
-      RDS[(Amazon RDS Oracle<br/>o Oracle en EC2 segun tu caso)]
+      RDS[(Amazon RDS Oracle<br/>o Oracle en EC2)]
     end
 
     VPCE[VPC Endpoint Interface<br/>for SQS]

@@ -1,20 +1,26 @@
 "%dev":
   quarkus:
     http:
-      port: 8030
+      port: ${APP_PORT}
     datasource:
-      db-kind: oracle
+      db-kind: ${DB_SOURCE}
       jdbc:
-        max-size: 10
-        min-size: 1
-        url: jdbc:oracle:thin:@//localhost:1521/FREEPDB1
-      username: db_user
-      password: db_password
-
+        max-size: ${DB_POOL_MAX}
+        min-size: ${DB_POOL_MIN}
+        url: {DB_URL}
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+    mailer:
+      mock: ${EMAIL_MOCK}
+      from: ${EMAIL_FROM}
+      host: ${EMAIL_HOST}
+      port: ${EMAIL_PORT}
+      username: ${EMAIL_USER}
+      password: ${EMAIL_PASSWORD}
 "%lambda":
   quarkus:
     http:
-      port: 8070
+      port: ${LAMBDA_HTTP_PORT}
 
 #    datasource:
 #       devservices:

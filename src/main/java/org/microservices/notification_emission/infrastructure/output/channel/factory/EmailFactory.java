@@ -2,14 +2,14 @@ package org.microservices.notification_emission.infrastructure.output.channel.fa
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.microservices.notification_emission.domain.ports.channel.ChannelNotificationSender;
-import org.microservices.notification_emission.infrastructure.output.channel.impl.EmailChannelNotificationSender;
+import org.microservices.notification_emission.infrastructure.output.channel.impl.email.MailpitChannelNotificationSender;
 
 @ApplicationScoped
 public class EmailFactory implements ChannelNotificationSenderAbstractFactory{
 
-    private final EmailChannelNotificationSender emailSender;
+    private final MailpitChannelNotificationSender emailSender;
 
-    public EmailFactory(EmailChannelNotificationSender emailSender) {
+    public EmailFactory(MailpitChannelNotificationSender emailSender) {
         this.emailSender = emailSender;
     }
 
